@@ -1,25 +1,39 @@
 @import "tailwindcss";
 
 /* -------------------------------------------------------------------------- */
-/*  Design tokens                                                              */
+/*  Design tokens — derived from the Prime Bodywork and Repair logo           */
 /* -------------------------------------------------------------------------- */
-/*  Palette chosen to look credible for an auto body shop:                     */
-/*    - Charcoal primary  → trust, professional, premium                       */
-/*    - Amber accent      → "automotive" without being aggressive              */
-/*    - Stone neutrals    → warm grey backgrounds                              */
+/*
+ *  Logo palette:
+ *    - Royal blue (the "PRIME" wordmark)   → primary
+ *    - Bright red (the "BODYWORK AND REPAIR" strapline) → accent / CTAs
+ *    - Warm orange/gold (the car silhouette) → secondary accent / decoration
+ *    - Off-white cream                      → muted background
+ *
+ *  Why this works for an auto body shop:
+ *    Blue + red is the classic automotive trade palette (think historic gas
+ *    stations, Americana garages, MOT station signage). Orange brings warmth
+ *    and matches the logo's car element. Keeping the off-white cream avoids
+ *    the harsh, sterile feel of pure white.
+ */
 
 :root {
   --color-bg: #ffffff;
-  --color-bg-muted: #f5f5f4;          /* stone-100 */
-  --color-fg: #1c1917;                /* stone-900 */
-  --color-fg-muted: #57534e;          /* stone-600 */
-  --color-border: #e7e5e4;            /* stone-200 */
+  --color-bg-muted: #f7f5f0;          /* warm cream, like the logo background */
+  --color-fg: #0c1224;                /* very dark blue-black */
+  --color-fg-muted: #4a5568;          /* slate-grey */
+  --color-border: #e5e7eb;            /* light grey */
 
-  --color-primary: #0f172a;           /* slate-900  – headers, footer bg */
-  --color-primary-fg: #f8fafc;        /* slate-50   – text on primary */
-  --color-accent: #f59e0b;            /* amber-500  – CTAs */
-  --color-accent-hover: #d97706;      /* amber-600 */
-  --color-accent-fg: #1c1917;         /* dark text on amber */
+  --color-primary: #1e3a8a;           /* royal blue — matches "PRIME" */
+  --color-primary-dark: #172554;      /* deeper blue for gradients */
+  --color-primary-fg: #f8fafc;        /* near-white text on primary */
+
+  --color-accent: #dc2626;            /* red — matches "BODYWORK AND REPAIR" */
+  --color-accent-hover: #b91c1c;      /* darker red for hover */
+  --color-accent-fg: #ffffff;         /* white text on red */
+
+  --color-warm: #f59e0b;              /* amber/gold — matches car silhouette */
+  --color-warm-hover: #d97706;
 
   --max-content-width: 1200px;
 }
@@ -34,6 +48,7 @@
   --color-primary-foreground: var(--color-primary-fg);
   --color-accent: var(--color-accent);
   --color-accent-foreground: var(--color-accent-fg);
+  --color-warm: var(--color-warm);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

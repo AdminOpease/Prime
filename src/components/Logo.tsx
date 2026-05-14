@@ -4,8 +4,11 @@ import { urlFor } from "@/sanity/image";
 import type { SiteSettings } from "@/sanity/types";
 
 /**
- * Renders the business logo if present, otherwise a clean text wordmark.
- * Keeps the header looking professional even before the owner uploads a logo.
+ * Brand wordmark.
+ * - If the owner has uploaded a logo to Site Settings → Logo in Sanity,
+ *   render that image.
+ * - Otherwise, render a typographic wordmark inspired by the real logo:
+ *   "PRIME" in royal blue, "BODYWORK & REPAIR" in red, on one row.
  */
 export function Logo({
   settings,
@@ -15,29 +18,46 @@ export function Logo({
   variant?: "light" | "dark";
 }) {
   const hasLogo = Boolean(settings.logo);
-  const textColor =
-    variant === "dark" ? "text-[var(--color-primary-foreground)]" : "text-[var(--color-foreground)]";
+
+  if (hasLogo) {
+    return (
+      <Link
+        href="/"
+        className="inline-flex items-center"
+        aria-label={`${settings.businessName} — home`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={urlFor(settings.logo!).width(280).auto("format").url()}
+          alt={settings.businessName}
+          className="h-10 w-auto"
+        />
+      </Link>
+    );
+  }
+
+  // Typographic fallback so the brand still feels real before Sanity is populated.
+  // On dark backgrounds (footer) we flip the "BODYWORK" red to a warmer accent
+  // so it stays legible without losing the two-tone effect.
+  const primeColor =
+    variant === "dark" ? "text-white" : "text-[var(--color-primary)]";
+  const sublineColor =
+    variant === "dark"
+      ? "text-[var(--color-warm)]"
+      : "text-[var(--color-accent)]";
 
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-3 font-bold tracking-tight ${textColor}`}
+      className="inline-flex items-baseline gap-2 font-bold tracking-tight"
       aria-label={`${settings.businessName} — home`}
     >
-      {hasLogo ? (
-        // Using a plain <img> so it works whether the logo is PNG, SVG, or JPG.
-        // Sanity's CDN already optimises and we get caching for free.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={urlFor(settings.logo!).width(240).auto("format").url()}
-          alt={settings.businessName}
-          className="h-10 w-auto"
-        />
-      ) : (
-        <span className="text-xl sm:text-2xl">
-          <span className="text-[var(--color-accent)]">Prime</span> Bodywork
-        </span>
-      )}
+      <span className={`text-xl sm:text-2xl ${primeColor}`}>PRIME</span>
+      <span
+        className={`hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:inline ${sublineColor}`}
+      >
+        Bodywork &amp; Repair
+      </span>
     </Link>
   );
 }

@@ -14,7 +14,7 @@ export function InsuranceCta({ phone }: { phone: string }) {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-accent)]">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-warm)]">
               Had an accident?
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">

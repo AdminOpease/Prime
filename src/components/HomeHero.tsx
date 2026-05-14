@@ -24,29 +24,45 @@ export function HomeHero({
   const telHref = `tel:${phone.replace(/\s+/g, "")}`;
 
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
-      {/* Decorative background: subtle radial vignette + diagonal lines */}
+    <section
+      className="relative isolate overflow-hidden text-[var(--color-primary-foreground)]"
+      style={{
+        background:
+          "linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)",
+      }}
+    >
+      {/* Decorative background: subtle diagonal pattern */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
             "repeating-linear-gradient(135deg, rgba(255,255,255,1) 0 1px, transparent 1px 14px)",
         }}
       />
+      {/* Warm orange glow top-centre — echoes the car silhouette in the logo */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 0%, rgba(245,158,11,0.18) 0%, transparent 60%)",
+            "radial-gradient(120% 80% at 50% 0%, rgba(245,158,11,0.20) 0%, transparent 60%)",
+        }}
+      />
+      {/* Red highlight along bottom edge — echoes the red strapline */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-1"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, var(--color-accent), transparent)",
         }}
       />
 
       <Container className="relative z-10 py-24 sm:py-32 lg:py-40">
         <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-[var(--color-accent)]" />
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-accent)]">
+          <span className="h-px w-8 bg-[var(--color-warm)]" />
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-warm)]">
             {town} · Bodyshop &amp; Garage
           </p>
         </div>

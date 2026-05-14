@@ -37,7 +37,7 @@ export default function GlobalError({
             style={{
               fontSize: 12,
               letterSpacing: "0.15em",
-              color: "#f59e0b",
+              color: "#dc2626",
               textTransform: "uppercase",
               fontWeight: 600,
             }}
@@ -65,8 +65,8 @@ export default function GlobalError({
               marginTop: 24,
               padding: "12px 24px",
               borderRadius: 6,
-              background: "#f59e0b",
-              color: "#1c1917",
+              background: "#dc2626",
+              color: "#ffffff",
               fontWeight: 600,
               textDecoration: "none",
             }}
