@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                              */
+/* -------------------------------------------------------------------------- */
+/*  Palette chosen to look credible for an auto body shop:                     */
+/*    - Charcoal primary  → trust, professional, premium                       */
+/*    - Amber accent      → "automotive" without being aggressive              */
+/*    - Stone neutrals    → warm grey backgrounds                              */
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-muted: #f5f5f4;          /* stone-100 */
+  --color-fg: #1c1917;                /* stone-900 */
+  --color-fg-muted: #57534e;          /* stone-600 */
+  --color-border: #e7e5e4;            /* stone-200 */
+
+  --color-primary: #0f172a;           /* slate-900  – headers, footer bg */
+  --color-primary-fg: #f8fafc;        /* slate-50   – text on primary */
+  --color-accent: #f59e0b;            /* amber-500  – CTAs */
+  --color-accent-hover: #d97706;      /* amber-600 */
+  --color-accent-fg: #1c1917;         /* dark text on amber */
+
+  --max-content-width: 1200px;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-muted: var(--color-bg-muted);
+  --color-muted-foreground: var(--color-fg-muted);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-fg);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-fg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base styles                                                                */
+/* -------------------------------------------------------------------------- */
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
