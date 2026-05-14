@@ -12,8 +12,9 @@ import {
   validateContactPayload,
 } from "@/lib/contactEmail";
 
-// Run on Node (not Edge) — Resend SDK uses APIs that need Node.
-export const runtime = "nodejs";
+// Cloudflare Pages adapter ships all routes to the edge runtime by default.
+// Resend's SDK is fetch-based so it works on edge — no Node-only APIs needed.
+export const runtime = "edge";
 
 function getEnv(name: string): string | undefined {
   const v = process.env[name];
