@@ -11,6 +11,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+  workerd: true
 
 # Older field name kept for compatibility with pnpm v10's parser.
 onlyBuiltDependencies:
@@ -18,3 +19,4 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - unrs-resolver
+  - workerd
