@@ -1,5 +1,20 @@
+# pnpm v10 requires a `packages:` field even when there's only one package.
+# We list the project root itself; this is effectively a no-op workspace,
+# but it keeps Cloudflare's pnpm v10 happy without changing dev behaviour.
+packages:
+  - "."
+
+# Approve post-install build scripts for native dependencies.
+# Without these, pnpm refuses to compile e.g. sharp's native bindings.
 allowBuilds:
   '@sentry/cli': true
   esbuild: true
   sharp: true
   unrs-resolver: true
+
+# Older field name kept for compatibility with pnpm v10's parser.
+onlyBuiltDependencies:
+  - '@sentry/cli'
+  - esbuild
+  - sharp
+  - unrs-resolver
