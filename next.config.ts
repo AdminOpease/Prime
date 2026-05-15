@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
+  // Required by OpenNext for Cloudflare — emits .next/standalone/ with a
+  // minimal Node server that the OpenNext bundler wraps into a Worker.
+  // No effect on local `next dev`.
+  output: "standalone",
   // Pin Turbopack's workspace root to this project so Next.js doesn't
   // accidentally pick up an unrelated lockfile sitting in $HOME.
   turbopack: {
