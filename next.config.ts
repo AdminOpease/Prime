@@ -12,8 +12,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
-  // Sanity ships its Studio as ESM that Next needs to transpile.
-  transpilePackages: ["sanity", "next-sanity", "@sanity/vision"],
+  // next-sanity is the only Sanity package we ship in the runtime bundle
+  // (the Studio itself is hosted by Sanity at primebodywork.sanity.studio).
+  transpilePackages: ["next-sanity"],
   // Sanity's CDN is the canonical source of asset images.
   images: {
     remotePatterns: [

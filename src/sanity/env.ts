@@ -26,7 +26,3 @@ export const dataset = required(
 
 export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2025-01-01";
-
-// Path the embedded Studio is mounted at — change here AND in app/studio/...
-// if you ever move it.
-export const studioPath = "/studio";

@@ -2,19 +2,21 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-import { apiVersion, dataset, projectId, studioPath } from "./src/sanity/env";
+import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schemaTypes, singletonTypes } from "./src/sanity/schemas";
 import { structure } from "./src/sanity/structure";
 
 /**
  * Sanity Studio configuration.
- * The Studio is mounted inside the Next.js app at /studio — see
- * src/app/studio/[[...tool]]/page.tsx.
+ *
+ * The Studio is deployed separately to Sanity's free hosting via
+ * `pnpm run studio:deploy`. It lives at primebodywork.sanity.studio (or
+ * whichever hostname was chosen during deploy). Doing it this way keeps
+ * the public Next.js bundle small enough for Cloudflare Workers' free tier.
  */
 export default defineConfig({
   name: "default",
   title: "Prime Bodywork and Repair",
-  basePath: studioPath,
   projectId,
   dataset,
   schema: {
