@@ -12,9 +12,10 @@ import {
   validateContactPayload,
 } from "@/lib/contactEmail";
 
-// Cloudflare Pages adapter ships all routes to the edge runtime by default.
-// Resend's SDK is fetch-based so it works on edge — no Node-only APIs needed.
-export const runtime = "edge";
+// We deploy via OpenNext + Cloudflare Workers (not the older Pages edge
+// adapter), so Node runtime is correct — the Worker has nodejs_compat
+// enabled in wrangler.jsonc.
+export const runtime = "nodejs";
 
 function getEnv(name: string): string | undefined {
   const v = process.env[name];
