@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:cf": "next build --webpack && opennextjs-cloudflare build --skipNextBuild",
+    "build:cf": "rm -rf .next .open-next && next build --webpack && opennextjs-cloudflare build --skipNextBuild",
     "deploy:cf": "opennextjs-cloudflare deploy",
     "preview:cf": "opennextjs-cloudflare preview",
     "start": "next start",
