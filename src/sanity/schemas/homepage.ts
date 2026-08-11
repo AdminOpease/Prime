@@ -37,7 +37,7 @@ export const homepage = defineType({
     defineField({
       name: "heroCtaLabel",
       title: "Primary button label",
-      description: "e.g. \"Get a free quote\"",
+      description: "e.g. \"Get a repair estimate\"",
       type: "string",
       group: "hero",
     }),

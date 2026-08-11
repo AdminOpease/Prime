@@ -5,6 +5,8 @@ import { ButtonLink } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { PortableText } from "@/components/PortableText";
+import { SanityImage } from "@/components/SanityImage";
+import { ServicePlaceholderImage } from "@/components/ServicePlaceholderImage";
 import { getServiceBySlug } from "@/sanity/data";
 import {
   findPlaceholderBySlug,
@@ -50,6 +52,7 @@ export default async function ServiceDetailPage({
   const description = service?.shortDescription ?? placeholder!.shortDescription;
   const priceFrom = service?.priceFrom ?? placeholder?.priceFrom;
   const hasRealBody = service?.body && service.body.length > 0;
+  const category = service?.category ?? placeholder!.category;
 
   return (
     <>
@@ -60,7 +63,7 @@ export default async function ServiceDetailPage({
         cta={
           <>
             <ButtonLink href="/contact" size="lg">
-              Get a quote for this
+              Get a repair estimate
             </ButtonLink>
             {priceFrom && (
               <span className="inline-flex items-center rounded-md bg-white/10 px-4 text-sm text-white/90">
@@ -70,6 +73,28 @@ export default async function ServiceDetailPage({
           </>
         }
       />
+
+      {/* Hero image (real from Sanity, or branded placeholder) */}
+      <div className="border-b border-[var(--color-border)] bg-[var(--color-primary)]">
+        <Container className="py-6">
+          <div className="overflow-hidden rounded-xl">
+            {service?.heroImage ? (
+              <SanityImage
+                source={service.heroImage}
+                alt={title}
+                width={1600}
+                height={720}
+                className="h-auto w-full object-cover"
+              />
+            ) : (
+              <ServicePlaceholderImage
+                category={category}
+                className="h-auto w-full"
+              />
+            )}
+          </div>
+        </Container>
+      </div>
 
       <section className="py-16">
         <Container>
@@ -88,13 +113,14 @@ export default async function ServiceDetailPage({
             )}
 
             <div className="mt-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-muted)] p-6">
-              <h2 className="text-xl font-semibold">Ready to book this in?</h2>
+              <h2 className="text-xl font-semibold">Get a written estimate</h2>
               <p className="mt-2 text-[var(--color-muted-foreground)]">
-                Send us a few details and we&apos;ll call you back with a quote.
-                Or call us directly on the number in the header.
+                Send the vehicle details, a description of the work and a few
+                photos and we&apos;ll come back with a written estimate. Or
+                call the number in the header.
               </p>
               <div className="mt-4">
-                <ButtonLink href="/contact">Request a quote</ButtonLink>
+                <ButtonLink href="/contact">Get a repair estimate</ButtonLink>
               </div>
             </div>
           </article>

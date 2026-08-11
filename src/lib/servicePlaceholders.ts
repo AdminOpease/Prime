@@ -1,7 +1,10 @@
 /**
- * Hand-written placeholder content for the 6 services we know the garage
- * offers. Used until the owner publishes real content in Sanity — at which
- * point the live data overrides these.
+ * Hand-written placeholder content for the 4 services the garage offers.
+ * Used until the owner publishes real content in Sanity — at which point
+ * live data overrides these.
+ *
+ * Ordering matches the owner's requested homepage flow:
+ *   Bodywork → Van & Fleet → Defleet → Insurance & Private
  */
 
 import type { ServiceCategory } from "@/sanity/types";
@@ -21,72 +24,47 @@ export const servicePlaceholders: ServicePlaceholder[] = [
     category: "bodywork",
     title: "Bodywork & Accident Repair",
     shortDescription:
-      "Expert collision repair, paint matching and dent removal for all makes and models. Insurance approved.",
+      "Panel repairs, dents, scratches, bumpers and paintwork for vans and cars, with accurate colour matching and quality finishes.",
     body: [
-      "From minor scuffs to major collision damage, our bodyshop restores vehicles to pre-accident condition. We use computerised paint mixing to match every modern factory colour and finish.",
-      "We handle the full process for you: estimate, courtesy car arrangement, insurer liaison, and a quality check on every job before it leaves the workshop.",
-      "Common work includes panel replacement, paintless dent removal, alloy wheel refurbishment, plastic bumper repair, and full resprays.",
+      "From minor scuffs to major collision damage, our bodyshop restores vehicles to a high standard. We use computerised paint mixing to match every modern factory colour and finish.",
+      "Common work includes accident damage repair, paintless dent removal, plastic bumper repair, scratch and stone-chip touch-up, alloy wheel refurbishment, and full resprays across all makes and models.",
+      "We estimate the work in writing before starting so there are no surprises — get in touch with a few photos and we'll come back with a repair estimate.",
     ],
   },
   {
-    slug: "mot-testing",
-    category: "mot",
-    title: "MOT Testing",
+    slug: "van-fleet-repairs",
+    category: "van-fleet",
+    title: "Van & Fleet Repairs",
     shortDescription:
-      "Class 4 MOT testing in Luton. Quick turnaround, honest results, and we'll fix what's needed in-house.",
+      "Specialist repairs for delivery service partners, fleet operators and commercial vans, with clear estimates and fast turnaround to reduce vehicle downtime.",
     body: [
-      "We're an authorised MOT testing station for Class 4 vehicles (cars, small vans). Most tests are completed the same day.",
-      "If your vehicle needs work to pass, we'll explain what's required and what it'll cost before doing anything — no surprises.",
-      "We can also handle re-tests for free if the work is done by us within the standard window.",
-    ],
-    priceFrom: "£45",
-  },
-  {
-    slug: "servicing-mechanical-repair",
-    category: "servicing",
-    title: "Servicing & Mechanical Repair",
-    shortDescription:
-      "Manufacturer-spec servicing, mechanical repairs, brakes, clutches, and diagnostics for all makes.",
-    body: [
-      "From interim services to full manufacturer-spec schedules, we maintain your vehicle's service history without invalidating any warranty.",
-      "Our workshop is equipped for diagnostics across modern petrol, diesel, and hybrid vehicles. We tackle brakes, suspension, clutches, timing belts, exhausts, and electrical faults.",
-      "All work is documented and we use OE-quality parts as standard.",
+      "We work with delivery service partners, fleet operators and leasing customers who need reliable repairs, clear communication, and fast turnaround to keep vehicles earning.",
+      "Typical work includes accident and body damage repair, panel replacement, paintwork, bumper repair, and cosmetic tidy-ups. We're set up for volume and can prioritise vehicles by operational need.",
+      "Get in touch about volume rates, direct invoicing to your fleet account, and priority booking arrangements.",
     ],
   },
   {
-    slug: "classic-car-restoration",
-    category: "classic",
-    title: "Classic Car Restoration",
+    slug: "end-of-hire-defleet",
+    category: "defleet",
+    title: "End-of-Hire & Defleet",
     shortDescription:
-      "Sympathetic restoration and repair for classic vehicles — bodywork, paint, mechanical, and trim.",
+      "Vehicle inspections, damage repairs and return preparation to help meet leasing standards and reduce avoidable end-of-contract charges.",
     body: [
-      "Classics need patience and the right techniques. We work on everything from light recommissioning to full ground-up restorations.",
-      "Whether it's rust repair on a Mini, a paint refresh on a Jag, or a complete rebuild, we'll talk you through the process and timeline before quoting.",
-      "Photos and updates throughout the project, on request — we know these cars matter to their owners.",
+      "Leasing and hire contracts have strict return standards — anything outside the return guide can lead to unnecessary damage charges. We help you meet the required standard before the vehicle goes back.",
+      "The process: we inspect the vehicle against BVRLA-style fair-wear-and-tear criteria, quote for the repairs that make economic sense to fix in-house, and turn the vehicle round quickly so you can hand it back clean.",
+      "Common work includes bumper scuffs, alloy refurbishment, panel dents, minor paint damage, and interior tidy-ups. We can also produce a written inspection report if useful for your records.",
     ],
   },
   {
-    slug: "prestige-vehicles",
-    category: "prestige",
-    title: "Prestige Vehicles",
+    slug: "insurance-private-work",
+    category: "insurance-private",
+    title: "Insurance & Private Work",
     shortDescription:
-      "Approved bodywork and mechanical service for prestige and luxury marques.",
+      "Insurance claims and private repairs welcome. We liaise directly with insurers and manage the repair from assessment to completion.",
     body: [
-      "Prestige vehicles deserve the right kit and the right care. We have the diagnostic tools, the paint expertise, and the trim techniques modern luxury cars demand.",
-      "Common work includes accident repair, scratch and stone-chip touch-up, alloy refurbishment, brake and suspension service, and pre-sale presentation.",
-      "Vehicles are kept inside the workshop, never left outside overnight.",
-    ],
-  },
-  {
-    slug: "fleet-services",
-    category: "fleet",
-    title: "Fleet Services",
-    shortDescription:
-      "Fast-turnaround maintenance and accident repair for company vehicles and fleet operators.",
-    body: [
-      "We work with local fleet operators to keep vehicles on the road. Same-day estimates, priority bookings, and direct invoicing to your fleet account where required.",
-      "Services include MOT, scheduled maintenance, accident repair, tyres, exhausts, and full vehicle inspections.",
-      "Get in touch to discuss volume rates and contract arrangements.",
+      "Whether you're claiming on your own insurance, a third party's, or paying privately, we make the process as straightforward as possible.",
+      "For insurance work we can communicate directly with the insurer or claims handler — estimates, assessor visits, photo evidence, and final invoicing. You don't need to chase paperwork.",
+      "For private and walk-in customers we provide a clear written estimate up front, do the work to a proper standard, and back it with a written guarantee. Get in touch with a few photos and we'll come back to you.",
     ],
   },
 ];

@@ -50,7 +50,7 @@ export async function Header() {
             {settings.phone}
           </a>
           <ButtonLink href="/contact" size="sm" variant="primary">
-            Get a quote
+            Get an estimate
           </ButtonLink>
         </div>
       </Container>

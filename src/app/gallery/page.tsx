@@ -23,7 +23,7 @@ export default async function GalleryPage() {
         description="A small selection of recent repairs. More photos added as work goes through the workshop."
         cta={
           <ButtonLink href="/contact" size="lg">
-            Get your quote
+            Get a repair estimate
           </ButtonLink>
         }
       />

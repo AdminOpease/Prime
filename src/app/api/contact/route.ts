@@ -1,8 +1,9 @@
 /**
  * POST /api/contact
  *
- * Receives contact-form submissions, validates them, and forwards via Resend.
- * Replies on success with { ok: true }, on failure with { error: string }.
+ * Accepts multipart/form-data submissions from the ContactForm on /contact,
+ * validates them, and forwards the enquiry via Resend with any uploaded
+ * photos included as email attachments.
  */
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -12,10 +13,13 @@ import {
   validateContactPayload,
 } from "@/lib/contactEmail";
 
-// We deploy via OpenNext + Cloudflare Workers (not the older Pages edge
-// adapter), so Node runtime is correct — the Worker has nodejs_compat
-// enabled in wrangler.jsonc.
+// OpenNext bundles all routes as one Node-compatible Worker.
+// Node runtime keeps FormData + Buffer APIs available.
 export const runtime = "nodejs";
+
+const MAX_FILES = 5;
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB per file
+const MAX_TOTAL_BYTES = 30 * 1024 * 1024; // 30 MB total attachment size
 
 function getEnv(name: string): string | undefined {
   const v = process.env[name];
@@ -25,9 +29,6 @@ function getEnv(name: string): string | undefined {
 export async function POST(req: Request) {
   const apiKey = getEnv("RESEND_API_KEY");
   const to = getEnv("CONTACT_FORM_TO_EMAIL");
-  // Resend's sandbox sender — works on free tier without a verified domain.
-  // Once primebodywork.co.uk's DNS is at Cloudflare we'll verify the domain
-  // in Resend and switch this to noreply@primebodywork.co.uk.
   const from = getEnv("CONTACT_FORM_FROM_EMAIL") ?? "onboarding@resend.dev";
 
   if (!apiKey || !to) {
@@ -40,33 +41,89 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: unknown;
+  let form: FormData;
   try {
-    body = await req.json();
+    form = await req.formData();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid form submission." },
+      { status: 400 },
+    );
   }
 
-  const result = validateContactPayload(body);
-  if (!result.ok) {
-    // Honeypot triggered → pretend success so bots don't learn anything.
-    if (result.error === "__honeypot__") {
+  // Extract fields
+  const getField = (k: string) => (form.get(k) ?? "").toString();
+  const validation = validateContactPayload({
+    name: getField("name"),
+    phone: getField("phone"),
+    email: getField("email"),
+    registration: getField("registration"),
+    driveable: getField("driveable"),
+    workType: getField("workType"),
+    damageLocations: form.getAll("damageLocation").map((v) => v.toString()),
+    timescale: getField("timescale"),
+    message: getField("message"),
+    website: getField("website"),
+  });
+
+  if (!validation.ok) {
+    if (validation.error === "__honeypot__") {
       return NextResponse.json({ ok: true });
     }
-    return NextResponse.json({ error: result.error }, { status: 400 });
+    return NextResponse.json({ error: validation.error }, { status: 400 });
   }
 
-  const { text, html } = buildEmailBodies(result.value);
+  // Extract and validate photos
+  const rawPhotos = form.getAll("photos").filter((p): p is File => p instanceof File);
+  if (rawPhotos.length > MAX_FILES) {
+    return NextResponse.json(
+      { error: `Please attach no more than ${MAX_FILES} photos.` },
+      { status: 400 },
+    );
+  }
+  let totalBytes = 0;
+  for (const file of rawPhotos) {
+    if (file.size > MAX_FILE_BYTES) {
+      return NextResponse.json(
+        { error: `"${file.name}" is over 10 MB.` },
+        { status: 400 },
+      );
+    }
+    if (!file.type.startsWith("image/")) {
+      return NextResponse.json(
+        { error: `"${file.name}" isn't an image.` },
+        { status: 400 },
+      );
+    }
+    totalBytes += file.size;
+  }
+  if (totalBytes > MAX_TOTAL_BYTES) {
+    return NextResponse.json(
+      { error: "Total photo size is too large — please pick fewer or smaller images." },
+      { status: 400 },
+    );
+  }
+
+  // Convert Files → Resend attachments
+  const attachments = await Promise.all(
+    rawPhotos.map(async (file) => ({
+      filename: sanitiseFilename(file.name),
+      content: Buffer.from(await file.arrayBuffer()),
+    })),
+  );
+
+  const { text, html } = buildEmailBodies(validation.value, rawPhotos.length);
 
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: `Prime Bodywork website <${from}>`,
       to,
-      subject: `New enquiry from ${result.value.name}`,
+      subject: `Estimate request — ${validation.value.registration} — ${validation.value.name}`,
       text,
       html,
-      replyTo: result.value.email || undefined,
+      replyTo: validation.value.email || undefined,
+      attachments: attachments.length > 0 ? attachments : undefined,
     });
 
     if (error) {
@@ -85,4 +142,10 @@ export async function POST(req: Request) {
       { status: 500 },
     );
   }
+}
+
+/** Strip anything unsafe from a browser-supplied filename. */
+function sanitiseFilename(name: string): string {
+  const safe = name.replace(/[^a-zA-Z0-9._-]+/g, "_").slice(0, 120);
+  return safe.length > 0 ? safe : "photo.jpg";
 }

@@ -19,8 +19,8 @@ export default async function ContactPage() {
     <>
       <PageHero
         eyebrow="Get in touch"
-        title="Send us a message — we'll call you back"
-        description="Tell us a bit about your vehicle and what you need. We aim to come back to every enquiry within the working day."
+        title="Get a repair estimate"
+        description="Send us the vehicle details, a description of the work, and a few photos. We aim to come back to every enquiry within the working day."
       />
 
       <section className="py-16">
@@ -28,7 +28,7 @@ export default async function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_400px]">
             {/* Form */}
             <div>
-              <h2 className="text-xl font-semibold">Request a quote</h2>
+              <h2 className="text-xl font-semibold">Get a repair estimate</h2>
               <p className="mt-2 text-sm text-[var(--color-muted-foreground)]">
                 Required fields are marked. We&apos;ll only use your details to
                 reply to your enquiry.

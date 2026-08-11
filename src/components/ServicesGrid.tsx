@@ -92,11 +92,9 @@ function labelFor(category: string): string {
   return (
     {
       bodywork: "Bodywork",
-      mot: "MOT",
-      servicing: "Servicing",
-      classic: "Classic Cars",
-      prestige: "Prestige",
-      fleet: "Fleet",
+      "van-fleet": "Van & Fleet",
+      defleet: "End-of-Hire",
+      "insurance-private": "Insurance & Private",
     } as Record<string, string>
   )[category] ?? category;
 }

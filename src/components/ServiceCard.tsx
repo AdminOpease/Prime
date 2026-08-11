@@ -1,15 +1,14 @@
 import Link from "next/link";
 
 import { SanityImage } from "./SanityImage";
+import { ServicePlaceholderImage } from "./ServicePlaceholderImage";
 import type { ServiceListItem } from "@/sanity/types";
 
 const categoryLabels: Record<ServiceListItem["category"], string> = {
   bodywork: "Bodywork",
-  mot: "MOT",
-  servicing: "Servicing",
-  classic: "Classic",
-  prestige: "Prestige",
-  fleet: "Fleet",
+  "van-fleet": "Van & Fleet",
+  defleet: "End-of-Hire",
+  "insurance-private": "Insurance & Private",
 };
 
 export function ServiceCard({ service }: { service: ServiceListItem }) {
@@ -18,7 +17,7 @@ export function ServiceCard({ service }: { service: ServiceListItem }) {
       href={`/services/${service.slug}`}
       className="group block overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] transition-shadow hover:shadow-lg"
     >
-      <div className="aspect-[4/3] overflow-hidden bg-[var(--color-muted)]">
+      <div className="aspect-[4/3] overflow-hidden bg-[var(--color-primary)]">
         {service.heroImage ? (
           <SanityImage
             source={service.heroImage}
@@ -28,9 +27,10 @@ export function ServiceCard({ service }: { service: ServiceListItem }) {
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-xs uppercase tracking-widest text-[var(--color-muted-foreground)]">
-            Photo to be added
-          </div>
+          <ServicePlaceholderImage
+            category={service.category}
+            className="h-full w-full transition-transform group-hover:scale-105"
+          />
         )}
       </div>
       <div className="space-y-2 p-5">

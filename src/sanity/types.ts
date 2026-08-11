@@ -12,11 +12,9 @@ export type ImageWithAlt = SanityImageSource & { alt?: string };
 
 export type ServiceCategory =
   | "bodywork"
-  | "mot"
-  | "servicing"
-  | "classic"
-  | "prestige"
-  | "fleet";
+  | "van-fleet"
+  | "defleet"
+  | "insurance-private";
 
 export type OpeningHour = {
   day: string;

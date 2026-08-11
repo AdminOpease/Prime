@@ -27,11 +27,9 @@ export const service = defineType({
       options: {
         list: [
           { title: "Bodywork & Accident Repair", value: "bodywork" },
-          { title: "MOT Testing", value: "mot" },
-          { title: "Servicing & Mechanical Repair", value: "servicing" },
-          { title: "Classic Car Restoration", value: "classic" },
-          { title: "Prestige Vehicles", value: "prestige" },
-          { title: "Fleet Services", value: "fleet" },
+          { title: "Van & Fleet Repairs", value: "van-fleet" },
+          { title: "End-of-Hire & Defleet", value: "defleet" },
+          { title: "Insurance & Private Work", value: "insurance-private" },
         ],
       },
       validation: (r) => r.required(),

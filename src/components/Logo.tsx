@@ -5,11 +5,18 @@ import type { SiteSettings } from "@/sanity/types";
 
 /**
  * Brand wordmark.
- * - If the owner has uploaded a logo to Site Settings → Logo in Sanity,
- *   render that image.
- * - Otherwise, render a typographic wordmark inspired by the real logo:
- *   "PRIME" in royal blue, "BODYWORK & REPAIR" in red, on one row.
+ *
+ * Order of preference:
+ *   1. Logo uploaded to Sanity Site Settings → Logo (owner-controlled)
+ *   2. /logo.png in the public folder (dropped in by dev — see LOGO_FILE flag)
+ *   3. Typographic fallback: "PRIME" in red + "BODYWORK AND REPAIR" in orange
+ *      arranged to mirror the actual brand logo colours.
  */
+
+// Flip to `true` once you save the real logo image to /public/logo.png
+// (this avoids a broken image icon when the file hasn't been added yet).
+const HAS_LOGO_FILE = false;
+
 export function Logo({
   settings,
   variant = "light",
@@ -17,9 +24,8 @@ export function Logo({
   settings: SiteSettings;
   variant?: "light" | "dark";
 }) {
-  const hasLogo = Boolean(settings.logo);
-
-  if (hasLogo) {
+  // 1. Sanity-hosted logo — highest priority (owner-controlled)
+  if (settings.logo) {
     return (
       <Link
         href="/"
@@ -28,35 +34,52 @@ export function Logo({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={urlFor(settings.logo!).width(280).auto("format").url()}
+          src={urlFor(settings.logo).width(320).auto("format").url()}
           alt={settings.businessName}
-          className="h-10 w-auto"
+          className="h-11 w-auto"
         />
       </Link>
     );
   }
 
-  // Typographic fallback so the brand still feels real before Sanity is populated.
-  // On dark backgrounds (footer) we flip the "BODYWORK" red to a warmer accent
-  // so it stays legible without losing the two-tone effect.
+  // 2. Repo-hosted logo file
+  if (HAS_LOGO_FILE) {
+    return (
+      <Link
+        href="/"
+        className="inline-flex items-center"
+        aria-label={`${settings.businessName} — home`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.png" alt={settings.businessName} className="h-11 w-auto" />
+      </Link>
+    );
+  }
+
+  // 3. Typographic fallback — arranged to echo the real logo:
+  //    PRIME in red, BODYWORK AND REPAIR in warm gold underneath.
   const primeColor =
-    variant === "dark" ? "text-white" : "text-[var(--color-primary)]";
+    variant === "dark" ? "text-white" : "text-[var(--color-accent)]";
   const sublineColor =
     variant === "dark"
       ? "text-[var(--color-warm)]"
-      : "text-[var(--color-accent)]";
+      : "text-[var(--color-warm)]";
 
   return (
     <Link
       href="/"
-      className="inline-flex items-baseline gap-2 font-bold tracking-tight"
+      className="inline-flex flex-col leading-none"
       aria-label={`${settings.businessName} — home`}
     >
-      <span className={`text-xl sm:text-2xl ${primeColor}`}>PRIME</span>
       <span
-        className={`hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:inline ${sublineColor}`}
+        className={`font-black tracking-tight text-2xl sm:text-3xl ${primeColor}`}
       >
-        Bodywork &amp; Repair
+        PRIME
+      </span>
+      <span
+        className={`mt-1 text-[9px] font-bold uppercase tracking-[0.15em] ${sublineColor}`}
+      >
+        Bodywork and Repair
       </span>
     </Link>
   );

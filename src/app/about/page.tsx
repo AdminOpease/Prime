@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Prime Bodywork and Repair — a bodywork and mechanical workshop based in Luton.",
+    "Prime Bodywork and Repair is a specialist body repair centre in Luton. We work with delivery service partners, fleet operators, leasing customers, insurers and private customers.",
 };
 
 export default async function AboutPage() {
@@ -31,7 +31,7 @@ export default async function AboutPage() {
         title={page?.title ?? "About Prime Bodywork and Repair"}
         description={
           page?.metaDescription ??
-          "A bodyshop and mechanical workshop serving Luton and the surrounding area. Insurance approved, classic and prestige experienced, fleet welcome."
+          "A specialist body repair centre in Luton. We work with delivery service partners, fleet operators, leasing customers, insurers and private customers."
         }
         cta={
           <ButtonLink href="/contact" size="lg">
@@ -48,20 +48,33 @@ export default async function AboutPage() {
             ) : (
               <>
                 <p className="mt-4 text-base leading-relaxed">
-                  Prime Bodywork and Repair is a local workshop offering full
-                  bodywork, MOT, servicing, and specialist work for classic,
-                  prestige, and fleet vehicles. We&apos;re based at Unit 6, 196
-                  Camford Way in Luton.
+                  Prime Bodywork and Repair is a specialist body repair centre
+                  based at Unit 6, 196 Camford Way, Luton.
                 </p>
                 <p className="mt-4 text-base leading-relaxed">
-                  Customers come to us for honest advice, careful work, and a
-                  straightforward process — especially with insurance claims,
-                  where we&apos;ll deal with the insurer directly so you
-                  don&apos;t have to chase paperwork.
+                  We specialise in commercial vans and work closely with
+                  delivery service partners, fleet operators and leasing
+                  customers who need reliable repairs, clear communication and
+                  fast turnaround to keep vehicles on the road.
                 </p>
                 <p className="mt-4 text-base leading-relaxed">
-                  This section will be replaced with the owner&apos;s real story
-                  and team photos once they&apos;re published in the Studio.
+                  Our services include accident damage repair, dent and panel
+                  repairs, paintwork, bumper repairs, end-of-hire repairs and
+                  defleet preparation. We help bring vehicles up to the required
+                  return standard and reduce the risk of unnecessary damage
+                  charges at the end of a lease or hire period.
+                </p>
+                <p className="mt-4 text-base leading-relaxed">
+                  We also welcome private customers, walk-in enquiries and
+                  insurance work. Where an insurance claim is involved, we can
+                  communicate directly with the insurer and help manage the
+                  repair process from assessment through to completion.
+                </p>
+                <p className="mt-4 text-base leading-relaxed">
+                  Whether you operate a fleet or need repairs to your own
+                  vehicle, our focus is straightforward: practical advice,
+                  quality repairs and getting vehicles back on the road as
+                  quickly as possible.
                 </p>
               </>
             )}

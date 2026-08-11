@@ -80,7 +80,7 @@ export function HomeHero({
 
         <div className="mt-10 flex flex-wrap gap-3">
           <ButtonLink href="/contact" size="lg">
-            Get a free quote
+            Get a repair estimate
           </ButtonLink>
           <ButtonLink
             href={telHref}

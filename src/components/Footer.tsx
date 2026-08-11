@@ -100,7 +100,7 @@ export async function Footer() {
             </li>
             <li>
               <Link href="/contact" className="hover:text-[var(--color-accent)]">
-                Get a quote
+                Get a repair estimate
               </Link>
             </li>
           </ul>
