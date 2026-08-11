@@ -15,7 +15,7 @@ import type { SiteSettings } from "@/sanity/types";
 
 // Flip to `true` once you save the real logo image to /public/logo.png
 // (this avoids a broken image icon when the file hasn't been added yet).
-const HAS_LOGO_FILE = false;
+const HAS_LOGO_FILE = true;
 
 export function Logo({
   settings,
