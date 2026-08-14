@@ -38,7 +38,7 @@ export function ServiceCard({ service }: { service: ServiceListItem }) {
           {categoryLabels[service.category] ?? service.category}
         </p>
         <h3 className="text-lg font-semibold">{service.title}</h3>
-        <p className="line-clamp-2 text-sm text-[var(--color-muted-foreground)]">
+        <p className="text-sm text-[var(--color-muted-foreground)]">
           {service.shortDescription}
         </p>
         {service.priceFrom && (

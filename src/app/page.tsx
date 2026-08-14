@@ -8,12 +8,20 @@ import {
   getHomepageTestimonials,
   getSiteSettings,
 } from "@/sanity/data";
+import { testimonialFallbacks } from "@/lib/testimonials";
 
 export default async function HomePage() {
-  const [settings, testimonials] = await Promise.all([
+  const [settings, publishedTestimonials] = await Promise.all([
     getSiteSettings(),
     getHomepageTestimonials(),
   ]);
+
+  // Show real Sanity testimonials once published; until then fall back to
+  // the owner-supplied Google reviews so the section isn't empty at launch.
+  const testimonials =
+    publishedTestimonials.length > 0
+      ? publishedTestimonials
+      : testimonialFallbacks;
 
   return (
     <>

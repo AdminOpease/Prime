@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { SanityImage } from "@/components/SanityImage";
-import { getGallery } from "@/sanity/data";
+import { getGallery, getSiteSettings } from "@/sanity/data";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -13,7 +13,15 @@ export const metadata: Metadata = {
 };
 
 export default async function GalleryPage() {
-  const items = await getGallery();
+  const [items, settings] = await Promise.all([
+    getGallery(),
+    getSiteSettings(),
+  ]);
+  const examplesMailto = `mailto:${settings.email}?subject=${encodeURIComponent(
+    "Example photos request",
+  )}&body=${encodeURIComponent(
+    "Hi Prime Bodywork, please could you send me a few before/after examples of similar work? Thanks.",
+  )}`;
 
   return (
     <>
@@ -38,7 +46,7 @@ export default async function GalleryPage() {
                 Check back soon — or get in touch for examples in the meantime.
               </p>
               <div className="mt-6">
-                <ButtonLink href="/contact">Request examples</ButtonLink>
+                <ButtonLink href={examplesMailto}>Request examples</ButtonLink>
               </div>
             </div>
           ) : (
