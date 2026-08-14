@@ -122,6 +122,12 @@ export async function Footer() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-2 py-4 text-xs text-white/60 sm:flex-row">
           <p>© {year} {settings.businessName}. All rights reserved.</p>
+          <Link
+            href="/privacy"
+            className="hover:text-[var(--color-accent)]"
+          >
+            Privacy policy
+          </Link>
           <p>
             Website by{" "}
             <a

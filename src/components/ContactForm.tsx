@@ -380,7 +380,14 @@ export function ContactForm() {
           {status.kind === "sending" ? "Sending…" : "Send my estimate request"}
         </Button>
         <p className="text-xs text-[var(--color-muted-foreground)]">
-          By submitting you agree to be contacted about your enquiry.
+          By submitting you agree to be contacted about your enquiry. See our{" "}
+          <a
+            href="/privacy"
+            className="underline underline-offset-2 hover:text-[var(--color-accent)]"
+          >
+            Privacy policy
+          </a>
+          .
         </p>
       </div>
     </form>
