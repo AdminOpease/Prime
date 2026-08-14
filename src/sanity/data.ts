@@ -37,7 +37,7 @@ import type {
 const fallbackSiteSettings: SiteSettings = {
   businessName: "Prime Bodywork and Repair",
   tagline: "Van & fleet bodywork specialists in Luton",
-  phone: "01582 000000",
+  phone: "07469 755353",
   email: "eduard@primebodywork.co.uk",
   address: {
     line1: "Unit 6",
