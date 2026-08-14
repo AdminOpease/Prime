@@ -45,11 +45,13 @@ Email is on **Microsoft 365** — preserve every record in
 
 - [x] Baseline HTTP security headers (X-Frame-Options, nosniff,
       Referrer-Policy, Permissions-Policy, HSTS) — shipped.
-- [ ] **Rate limiting on `/api/contact`** — only a honeypot today; spam can
-      burn the Resend quota + flood the inbox. Options: **Cloudflare
-      Turnstile** (free CAPTCHA — needs a site key + secret key from the
-      Cloudflare Turnstile dashboard; Claude can wire it into the form once
-      keys exist) OR a Cloudflare WAF rate-limit rule on that path.
+- [x] **Turnstile bot protection on `/api/contact`** — live and verified
+      (tokenless requests blocked; real browser submissions pass). Site key
+      in `.env.production`, `TURNSTILE_SECRET_KEY` a Cloudflare runtime secret.
+- [ ] **WAF rate-limit rule** (second layer, dashboard-only) — Cloudflare →
+      `primebodywork.co.uk` → Security → WAF → Rate limiting rules → match
+      `URI Path == /api/contact` AND `Method == POST` → 5 req / 1 min per IP
+      → Managed Challenge.
 - [ ] **Content-Security-Policy** — deferred; needs testing against Sanity
       images / Sentry tunnel / Next hydration so it doesn't break the page.
 - [ ] (Hygiene) Dependency vulns are all in Sanity CLI **build-time**
