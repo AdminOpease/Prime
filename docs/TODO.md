@@ -52,8 +52,11 @@ Email is on **Microsoft 365** — preserve every record in
       first mis-created as a *Custom rule* w/ Managed Challenge, which broke
       the AJAX form — replaced with a proper Rate limiting rule. Consider
       relaxing to ~3-5/10s for retry / shared-IP (NAT) headroom.
-- [ ] **Content-Security-Policy** — deferred; needs testing against Sanity
-      images / Sentry tunnel / Next hydration so it doesn't break the page.
+- [x] **Content-Security-Policy** — live and enforcing. Verified in
+      Report-Only mode first (no violations for Turnstile / Sanity / Next
+      hydration), then switched on. Locks sources to self + Turnstile
+      (challenges.cloudflare.com), Sanity CDN, and an optional Google Maps
+      embed; object-src none, base-uri/form-action self, frame-ancestors self.
 - [x] (Hygiene) Checked: `sanity` + `@sanity/vision` are already
       devDependencies. The audit vulns come *transitively* via `next-sanity`
       (core dep) pulling in Sanity's CLI — build-time only, never shipped to
