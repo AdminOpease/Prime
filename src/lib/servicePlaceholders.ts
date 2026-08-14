@@ -64,7 +64,7 @@ export const servicePlaceholders: ServicePlaceholder[] = [
     body: [
       "Whether you're claiming on your own insurance, a third party's, or paying privately, we make the process as straightforward as possible.",
       "For insurance work we can communicate directly with the insurer or claims handler — estimates, assessor visits, photo evidence, and final invoicing. You don't need to chase paperwork.",
-      "For private and walk-in customers we provide a clear written estimate up front, do the work to a proper standard, and back it with a written guarantee. Get in touch with a few photos and we'll come back to you.",
+      "For private and walk-in customers we provide a clear written estimate up front, do the work to a proper standard, and stand behind it. Get in touch with a few photos and we'll come back to you.",
     ],
   },
 ];

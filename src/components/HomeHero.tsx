@@ -75,7 +75,7 @@ export function HomeHero({
         <p className="mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
           Accident damage, panel repairs, paintwork, bumpers and end-of-hire
           prep. Delivery service partners, fleet operators and private
-          customers welcome. Insurance approved. Camford Way, Luton.
+          customers welcome. Insurance work welcome. Camford Way, Luton.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
@@ -94,8 +94,8 @@ export function HomeHero({
 
         <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-8">
           <Stat label="Vans & fleet" value="Specialists" />
-          <Stat label="Insurance work" value="Approved" />
-          <Stat label="Estimate turnaround" value="24 hrs" />
+          <Stat label="Insurance work" value="Welcome" />
+          <Stat label="Estimate turnaround" value="Fast" />
         </dl>
       </Container>
     </section>

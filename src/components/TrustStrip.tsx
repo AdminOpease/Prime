@@ -8,7 +8,7 @@ import { Container } from "./Container";
  */
 export function TrustStrip() {
   const items = [
-    { label: "Insurance approved", sub: "We handle the claim" },
+    { label: "Insurance welcome", sub: "We liaise with your insurer" },
     { label: "Vans, cars & fleet", sub: "All makes and models" },
     { label: "DSP & fleet welcome", sub: "Fast turnaround, priority booking" },
     { label: "Free written estimates", sub: "No obligation" },

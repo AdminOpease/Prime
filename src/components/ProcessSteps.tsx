@@ -17,11 +17,11 @@ export function ProcessSteps() {
     },
     {
       title: "Quality repair",
-      body: "Booked in at a time that suits you. Done to manufacturer standards, kept inside the workshop.",
+      body: "Booked in at a time that suits you. Done to a high standard, kept inside the workshop.",
     },
     {
       title: "Ready to collect",
-      body: "Quality-checked, valeted, and signed off. We back our work with a written guarantee.",
+      body: "Quality-checked, valeted, and signed off. We stand behind the work we do.",
     },
   ];
 
