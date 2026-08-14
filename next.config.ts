@@ -2,6 +2,29 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import path from "node:path";
 
+// Content-Security-Policy. 'unsafe-inline' is required for Next.js App
+// Router (inline hydration scripts) and React inline styles; the rest is
+// locked to self + the specific third parties we actually load:
+//   - challenges.cloudflare.com : Turnstile widget (script + iframe)
+//   - cdn.sanity.io            : Sanity-hosted images
+//   - www.google.com           : optional Google Maps embed on /contact
+// Sentry is tunnelled through the same-origin /monitoring route, so it needs
+// no external connect-src entry.
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://cdn.sanity.io",
+  "font-src 'self' data:",
+  "connect-src 'self' https://challenges.cloudflare.com",
+  "frame-src https://challenges.cloudflare.com https://www.google.com",
+  "frame-ancestors 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const nextConfig: NextConfig = {
   // Required by OpenNext for Cloudflare — emits .next/standalone/ with a
   // minimal Node server that the OpenNext bundler wraps into a Worker.
@@ -42,6 +65,13 @@ const nextConfig: NextConfig = {
           {
             key: "Strict-Transport-Security",
             value: "max-age=31536000; includeSubDomains",
+          },
+          // Report-Only for now — verify in the browser console it doesn't
+          // flag legitimate resources, then switch the key to
+          // "Content-Security-Policy" to enforce.
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: contentSecurityPolicy,
           },
         ],
       },

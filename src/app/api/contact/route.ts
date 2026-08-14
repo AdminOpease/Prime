@@ -32,16 +32,8 @@ export async function POST(req: Request) {
   const from = getEnv("CONTACT_FORM_FROM_EMAIL") ?? "onboarding@resend.dev";
 
   if (!apiKey || !to) {
-    const missing = [
-      !apiKey ? "RESEND_API_KEY" : null,
-      !to ? "CONTACT_FORM_TO_EMAIL" : null,
-    ]
-      .filter(Boolean)
-      .join(" and ");
     return NextResponse.json(
-      {
-        error: `Contact form is not configured. Missing: ${missing}.`,
-      },
+      { error: "Contact form is not configured." },
       { status: 500 },
     );
   }
