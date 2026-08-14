@@ -140,7 +140,7 @@ export default async function ServiceDetailPage({
             </article>
 
             {/* Sidebar */}
-            <aside className="lg:sticky lg:top-24 lg:self-start">
+            <aside>
               <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-muted)] p-6">
                 <h2 className="text-lg font-semibold">Get a repair estimate</h2>
                 {priceFrom && (

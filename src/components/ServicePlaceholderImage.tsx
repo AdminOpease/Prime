@@ -80,12 +80,12 @@ export function ServicePlaceholderImage({
       <circle cx="300" cy="60" r="280" fill={meta.accent} opacity="0.14" />
 
       {/* Accent bar top-left */}
-      <rect x="40" y="40" width="60" height="4" fill={meta.accent} />
+      <rect x="40" y="86" width="60" height="4" fill={meta.accent} />
 
       {/* Small category tag top */}
       <text
         x="40"
-        y="70"
+        y="116"
         fill={meta.accent}
         fontFamily="sans-serif"
         fontWeight="700"
