@@ -27,7 +27,7 @@ export function InsuranceCta({ phone }: { phone: string }) {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch">
-            <ButtonLink href="/insurance-claims" size="lg">
+            <ButtonLink href="/services/insurance-private-work" size="lg">
               How it works
             </ButtonLink>
             <ButtonLink

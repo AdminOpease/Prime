@@ -89,8 +89,11 @@ export async function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/insurance-claims" className="hover:text-[var(--color-accent)]">
-                Insurance claims
+              <Link
+                href="/services/insurance-private-work"
+                className="hover:text-[var(--color-accent)]"
+              >
+                Insurance &amp; private work
               </Link>
             </li>
             <li>

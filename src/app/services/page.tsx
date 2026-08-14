@@ -24,7 +24,7 @@ export default async function ServicesIndexPage() {
       <PageHero
         eyebrow="What we do"
         title="Our services"
-        description="Everything we offer under one roof — bodywork, MOT, servicing, and specialist work for classic, prestige and fleet vehicles."
+        description="Everything we offer under one roof — accident and body repair for vans and cars, fleet maintenance, end-of-hire prep, and insurance work."
         cta={
           <ButtonLink href="/contact" size="lg">
             Get a repair estimate

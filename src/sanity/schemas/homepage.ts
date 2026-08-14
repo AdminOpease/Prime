@@ -52,7 +52,7 @@ export const homepage = defineType({
       name: "usps",
       title: "Why choose us",
       description:
-        "Short strip of selling points (3–4 works best). E.g. Insurance approved, Classic & prestige specialists, Fleet welcome.",
+        "Short strip of selling points (3–4 works best). E.g. Insurance approved, Vans & fleet welcome, Fast turnaround.",
       type: "array",
       group: "usps",
       of: [

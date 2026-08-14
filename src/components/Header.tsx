@@ -8,7 +8,6 @@ import { getSiteSettings } from "@/sanity/data";
 const navItems = [
   { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/insurance-claims", label: "Insurance Claims" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

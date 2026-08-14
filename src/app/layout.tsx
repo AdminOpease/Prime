@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       settings.tagline ??
-      "Bodywork, MOT and servicing in Luton. Insurance approved. Classic, prestige and fleet specialists.",
+      "Specialist body repair centre in Luton. Van and fleet bodywork, accident repair, end-of-hire prep and insurance work. Delivery service partners and fleet operators welcome.",
     metadataBase: new URL("https://primebodywork.co.uk"),
   };
 }

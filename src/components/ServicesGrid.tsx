@@ -19,11 +19,11 @@ export function ServicesGrid() {
               What we do
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-              Bodywork, mechanical, and specialist work
+              Bodywork for vans, cars and fleets
             </h2>
             <p className="mt-3 text-base text-[var(--color-muted-foreground)] sm:text-lg">
-              One workshop, every job — from a stone chip touch-up to a full
-              accident repair or classic restoration.
+              One workshop, every job — from a stone chip touch-up to full
+              accident repair, fleet maintenance and end-of-hire prep.
             </p>
           </div>
           <Link

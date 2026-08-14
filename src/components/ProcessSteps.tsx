@@ -9,7 +9,7 @@ export function ProcessSteps() {
   const steps = [
     {
       title: "Tell us about it",
-      body: "Send a message or call. A few details about the car and what's happened is all we need.",
+      body: "Send a message or call. A few details about the vehicle and what's happened is all we need.",
     },
     {
       title: "Free written estimate",

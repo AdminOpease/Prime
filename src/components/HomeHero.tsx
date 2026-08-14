@@ -9,7 +9,7 @@ import { Container } from "./Container";
  *    workshop photography drops in once the owner provides it (the radial
  *    gradient becomes a subtle vignette over the photo).
  *  - "From" text uses a hairline divider line on either side, which is a
- *    classic editorial cue that the eye keys into.
+ *    subtle editorial cue that the eye keys into.
  *  - Two CTAs: primary (quote) and secondary (call). Call CTA is slightly
  *    de-emphasised on desktop because we expect most desktop visitors to
  *    fill the form, but elevated on mobile where tap-to-call wins.
@@ -63,19 +63,19 @@ export function HomeHero({
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-[var(--color-warm)]" />
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-warm)]">
-            {town} · Bodyshop &amp; Garage
+            {town} · Van &amp; Fleet Bodyshop
           </p>
         </div>
 
         <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
-          Bodywork, MOT &amp; servicing —{" "}
+          Van &amp; fleet bodywork —{" "}
           <span className="text-[var(--color-accent)]">done properly.</span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
-          Accident repair, MOT testing, mechanical work, classic restoration,
-          and fleet maintenance — all under one roof on Camford Way. Insurance
-          approved.
+          Accident damage, panel repairs, paintwork, bumpers and end-of-hire
+          prep. Delivery service partners, fleet operators and private
+          customers welcome. Insurance approved. Camford Way, Luton.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
@@ -93,9 +93,9 @@ export function HomeHero({
         </div>
 
         <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-8">
-          <Stat label="Service categories" value="6" />
-          <Stat label="Insurance work" value="Yes" />
-          <Stat label="Quote turnaround" value="24 hrs" />
+          <Stat label="Vans & fleet" value="Specialists" />
+          <Stat label="Insurance work" value="Approved" />
+          <Stat label="Estimate turnaround" value="24 hrs" />
         </dl>
       </Container>
     </section>
