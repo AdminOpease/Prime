@@ -66,11 +66,10 @@ const nextConfig: NextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=31536000; includeSubDomains",
           },
-          // Report-Only for now — verify in the browser console it doesn't
-          // flag legitimate resources, then switch the key to
-          // "Content-Security-Policy" to enforce.
+          // Enforced. Verified in Report-Only mode first (no violations for
+          // Turnstile / Sanity / Next hydration) before switching on.
           {
-            key: "Content-Security-Policy-Report-Only",
+            key: "Content-Security-Policy",
             value: contentSecurityPolicy,
           },
         ],

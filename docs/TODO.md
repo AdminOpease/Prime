@@ -37,9 +37,8 @@ Email is on **Microsoft 365** — preserve every record in
 - [ ] Remove the leftover `RESEND_API_KEY` / `CONTACT_FORM_*` entries from
       the Cloudflare **Build** variables card (they belong in runtime/config
       now — harmless but confusing).
-- [ ] Revert the temporary diagnostic in `src/app/api/contact/route.ts`
-      (commit `6c02526`) if you want the generic error back — it currently
-      names which env var is missing (harmless, arguably useful).
+- [x] Reverted the temporary "which env var is missing" diagnostic in the
+      contact route back to a generic message.
 
 ## 🔒 Security follow-ups
 
@@ -55,9 +54,11 @@ Email is on **Microsoft 365** — preserve every record in
       relaxing to ~3-5/10s for retry / shared-IP (NAT) headroom.
 - [ ] **Content-Security-Policy** — deferred; needs testing against Sanity
       images / Sentry tunnel / Next hydration so it doesn't break the page.
-- [ ] (Hygiene) Dependency vulns are all in Sanity CLI **build-time**
-      tooling, not shipped to the Worker. Consider moving `sanity` to
-      devDependencies and periodic `pnpm update`.
+- [x] (Hygiene) Checked: `sanity` + `@sanity/vision` are already
+      devDependencies. The audit vulns come *transitively* via `next-sanity`
+      (core dep) pulling in Sanity's CLI — build-time only, never shipped to
+      the Worker, and not removable without replacing next-sanity. No safe
+      action helps; `pnpm update` for patch bumps is an optional future tidy.
 
 ## 📝 Content (owner / async)
 
