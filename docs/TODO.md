@@ -5,19 +5,18 @@ off as they're done. Deep detail lives in the linked docs.
 
 ---
 
-## 🔴 Critical / do first
+## ✅ DONE — Launched 2026-08-14
 
-- [ ] **Contact form is broken in production** — the Cloudflare Worker is
-      missing its runtime secrets, so every submission 500s.
-      Fix: Cloudflare → Worker → **Settings → Variables and Secrets** (the
-      **runtime** section, NOT Build) → add:
-  - `RESEND_API_KEY` = *(value from `.env.local` — paste in Cloudflare, never in chat)*
-  - `CONTACT_FORM_TO_EMAIL` = `admin@opease.co.uk` *(sandbox, until domain verified)*
-      Then redeploy.
-      *Note: superseded once the launch (below) is done — at that point the
-      key is replaced with the new one and the TO address becomes
-      `eduard@primebodywork.co.uk`. If launching straight away, skip the
-      interim sandbox value.*
+- [x] **Site live on `primebodywork.co.uk`** with valid HTTPS (Cloudflare
+      Worker; nameservers moved GoDaddy → Cloudflare).
+- [x] **Microsoft 365 email preserved** through the DNS migration (all
+      MX/TXT/SRV/CNAME records carried over — see [DNS_BASELINE.md](DNS_BASELINE.md)).
+- [x] **Resend domain verified**; sending from `noreply@primebodywork.co.uk`.
+- [x] **Contact form works end-to-end** — verified with a live test
+      submission (incl. photo) delivering to `eduard@primebodywork.co.uk`.
+      Env wiring: the two `CONTACT_FORM_*` emails live in `wrangler.jsonc`
+      `vars`; `RESEND_API_KEY` is a Cloudflare runtime **secret**;
+      `keep_vars: true` preserves it across deploys.
 
 ## 🚀 Launch — DNS switch + Resend verification
 
@@ -25,25 +24,22 @@ Full runbook: [LAUNCH_PLAYBOOK.md](LAUNCH_PLAYBOOK.md).
 Email is on **Microsoft 365** — preserve every record in
 [DNS_BASELINE.md](DNS_BASELINE.md) or Eduard's email/Teams breaks.
 
-- [ ] **Phase 1** — Cloudflare → Add a site → `primebodywork.co.uk` (Free).
-      Verify all 9 M365 records imported (scan often misses the 2 SRV +
-      `lyncdiscover`/`sip` CNAMEs). Set every record to **DNS only**.
-      **Do NOT switch nameservers yet.**
-- [ ] **Phase 2** — Attach Worker: Workers & Pages → primebodywork →
-      Domains → add `primebodywork.co.uk` and `www.primebodywork.co.uk`.
-- [ ] **Phase 3** — Resend → Domains → add `primebodywork.co.uk` → add its
-      `send` MX + 2 TXT records in Cloudflare (DNS only). Create the **new
-      Resend API key**.
-- [ ] **Phase 4** — GoDaddy → Change Nameservers → the 2 Cloudflare
-      nameservers. *(Only after Phase 1 records are confirmed.)*
-- [ ] **Phase 5** — Cloudflare runtime env vars:
-      `RESEND_API_KEY` = new key · `CONTACT_FORM_TO_EMAIL` =
-      `eduard@primebodywork.co.uk` · `CONTACT_FORM_FROM_EMAIL` =
-      `noreply@primebodywork.co.uk` → redeploy.
-- [ ] **Phase 6** — Verify (Claude can help): `dig` confirms M365 email
-      records survived + Cloudflare authoritative; site loads on real
-      domain with HTTPS; Resend shows green ticks; test form submission
-      lands in Eduard's inbox with photo attached.
+- [x] **Phase 1** — domain added to Cloudflare, all M365 records imported/DNS-only.
+- [x] **Phase 2** — Worker custom domains attached (apex + www).
+- [x] **Phase 3** — Resend records added + domain verified; new API key created.
+- [x] **Phase 4** — nameservers switched GoDaddy → Cloudflare.
+- [x] **Phase 5** — env wired (vars in `wrangler.jsonc`, `RESEND_API_KEY` secret).
+- [x] **Phase 6** — verified: HTTPS live, email intact, form test delivered.
+
+### Post-launch cleanup worth doing
+- [ ] Confirm the two **LAUNCH TEST** enquiries arrived in Eduard's inbox
+      (one with a photo), then he can delete them.
+- [ ] Remove the leftover `RESEND_API_KEY` / `CONTACT_FORM_*` entries from
+      the Cloudflare **Build** variables card (they belong in runtime/config
+      now — harmless but confusing).
+- [ ] Revert the temporary diagnostic in `src/app/api/contact/route.ts`
+      (commit `6c02526`) if you want the generic error back — it currently
+      names which env var is missing (harmless, arguably useful).
 
 ## 🔒 Security follow-ups
 
