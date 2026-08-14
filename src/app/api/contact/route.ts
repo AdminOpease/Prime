@@ -56,6 +56,24 @@ export async function POST(req: Request) {
     );
   }
 
+  // Cloudflare Turnstile bot check — only enforced when the secret is set,
+  // so the form keeps working before Turnstile is configured.
+  const turnstileSecret = getEnv("TURNSTILE_SECRET_KEY");
+  if (turnstileSecret) {
+    const token = (form.get("cf-turnstile-response") ?? "").toString();
+    const passed = await verifyTurnstile(
+      token,
+      turnstileSecret,
+      req.headers.get("cf-connecting-ip"),
+    );
+    if (!passed) {
+      return NextResponse.json(
+        { error: "Bot check failed — please try again." },
+        { status: 400 },
+      );
+    }
+  }
+
   // Extract fields
   const getField = (k: string) => (form.get(k) ?? "").toString();
   const validation = validateContactPayload({
@@ -146,6 +164,27 @@ export async function POST(req: Request) {
       { error: "Could not send the message. Please call us instead." },
       { status: 500 },
     );
+  }
+}
+
+/** Verify a Turnstile token against Cloudflare's siteverify endpoint. */
+async function verifyTurnstile(
+  token: string,
+  secret: string,
+  ip: string | null,
+): Promise<boolean> {
+  if (!token) return false;
+  const body = new URLSearchParams({ secret, response: token });
+  if (ip) body.append("remoteip", ip);
+  try {
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body },
+    );
+    const data = (await res.json()) as { success?: boolean };
+    return data.success === true;
+  } catch {
+    return false;
   }
 }
 

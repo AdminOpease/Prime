@@ -1,8 +1,14 @@
 "use client";
 
+import Script from "next/script";
 import { useState, useRef, type ChangeEvent, type FormEvent } from "react";
 
 import { Button } from "./Button";
+
+// Cloudflare Turnstile site key (public). When unset, the widget doesn't
+// render and the server skips verification — so the form works unchanged
+// until Turnstile is configured.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Status =
   | { kind: "idle" }
@@ -116,6 +122,12 @@ export function ContactForm() {
         message:
           err instanceof Error ? err.message : "Couldn't send your enquiry",
       });
+      // Turnstile tokens are single-use — reset so a retry gets a fresh one.
+      if (TURNSTILE_SITE_KEY) {
+        (
+          window as unknown as { turnstile?: { reset: () => void } }
+        ).turnstile?.reset();
+      }
     }
   }
 
@@ -373,6 +385,22 @@ export function ContactForm() {
         <p className="rounded-md bg-red-50 p-3 text-sm text-red-800">
           {status.message}
         </p>
+      )}
+
+      {/* Cloudflare Turnstile — renders only once a site key is configured. */}
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+          />
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-theme="auto"
+          />
+        </>
       )}
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
