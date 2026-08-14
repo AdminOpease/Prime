@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { getSiteSettings } from "@/sanity/data";
+import { servicePlaceholders } from "@/lib/servicePlaceholders";
 
 /**
  * Site footer with address, hours, social links, and a Google Maps embed.
@@ -83,27 +84,19 @@ export async function Footer() {
             Quick links
           </h3>
           <ul className="space-y-2 text-sm text-white/80">
+            {servicePlaceholders.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="hover:text-[var(--color-accent)]"
+                >
+                  {s.title}
+                </Link>
+              </li>
+            ))}
             <li>
               <Link href="/services" className="hover:text-[var(--color-accent)]">
                 All services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services/insurance-private-work"
-                className="hover:text-[var(--color-accent)]"
-              >
-                Insurance &amp; private work
-              </Link>
-            </li>
-            <li>
-              <Link href="/gallery" className="hover:text-[var(--color-accent)]">
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-[var(--color-accent)]">
-                Get a repair estimate
               </Link>
             </li>
           </ul>

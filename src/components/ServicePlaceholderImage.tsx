@@ -49,6 +49,7 @@ export function ServicePlaceholderImage({
     <svg
       viewBox="0 0 600 450"
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
       className={className}
       aria-label={`${meta.label} — placeholder image`}
       role="img"
