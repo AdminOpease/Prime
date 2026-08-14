@@ -48,10 +48,11 @@ Email is on **Microsoft 365** — preserve every record in
 - [x] **Turnstile bot protection on `/api/contact`** — live and verified
       (tokenless requests blocked; real browser submissions pass). Site key
       in `.env.production`, `TURNSTILE_SECRET_KEY` a Cloudflare runtime secret.
-- [ ] **WAF rate-limit rule** (second layer, dashboard-only) — Cloudflare →
-      `primebodywork.co.uk` → Security → WAF → Rate limiting rules → match
-      `URI Path == /api/contact` AND `Method == POST` → 5 req / 1 min per IP
-      → Managed Challenge.
+- [x] **WAF rate-limit rule** — live: Block on `/api/contact` POST, 1 req /
+      10s per IP (free-plan window). Verified triggering (429). NOTE: was
+      first mis-created as a *Custom rule* w/ Managed Challenge, which broke
+      the AJAX form — replaced with a proper Rate limiting rule. Consider
+      relaxing to ~3-5/10s for retry / shared-IP (NAT) headroom.
 - [ ] **Content-Security-Policy** — deferred; needs testing against Sanity
       images / Sentry tunnel / Next hydration so it doesn't break the page.
 - [ ] (Hygiene) Dependency vulns are all in Sanity CLI **build-time**
