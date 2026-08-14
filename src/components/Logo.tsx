@@ -17,13 +17,26 @@ import type { SiteSettings } from "@/sanity/types";
 // (this avoids a broken image icon when the file hasn't been added yet).
 const HAS_LOGO_FILE = true;
 
+// Logo image heights per size. The logo is a landscape image (~16:9), so
+// these translate to roughly 1.78× the width. Header sits inside a 64px bar;
+// the footer has more room so it can go larger.
+const SIZE_HEIGHT: Record<"md" | "lg" | "xl", string> = {
+  md: "h-11", // 44px — original
+  lg: "h-14", // 56px — header
+  xl: "h-20", // 80px — footer
+};
+
 export function Logo({
   settings,
   variant = "light",
+  size = "md",
 }: {
   settings: SiteSettings;
   variant?: "light" | "dark";
+  size?: "md" | "lg" | "xl";
 }) {
+  const heightClass = SIZE_HEIGHT[size];
+
   // 1. Sanity-hosted logo — highest priority (owner-controlled)
   if (settings.logo) {
     return (
@@ -34,9 +47,9 @@ export function Logo({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={urlFor(settings.logo).width(320).auto("format").url()}
+          src={urlFor(settings.logo).width(480).auto("format").url()}
           alt={settings.businessName}
-          className="h-11 w-auto"
+          className={`${heightClass} w-auto`}
         />
       </Link>
     );
@@ -51,7 +64,11 @@ export function Logo({
         aria-label={`${settings.businessName} — home`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt={settings.businessName} className="h-11 w-auto" />
+        <img
+          src="/logo.png"
+          alt={settings.businessName}
+          className={`${heightClass} w-auto`}
+        />
       </Link>
     );
   }

@@ -24,7 +24,7 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--color-bg)]/80">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Logo settings={settings} />
+        <Logo settings={settings} size="lg" />
 
         <nav
           aria-label="Primary"

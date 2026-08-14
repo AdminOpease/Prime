@@ -19,7 +19,7 @@ export async function Footer() {
       <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand block */}
         <div className="space-y-3">
-          <Logo settings={settings} variant="dark" />
+          <Logo settings={settings} variant="dark" size="xl" />
           {settings.tagline && (
             <p className="text-sm text-white/70">{settings.tagline}</p>
           )}
