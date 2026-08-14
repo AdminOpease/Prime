@@ -13,5 +13,16 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  // Non-secret runtime env vars. Committed here so every `wrangler deploy`
+  // ships them to the Worker (dashboard-set plaintext vars get wiped on
+  // deploy). The actual secret (RESEND_API_KEY) is NOT here — it stays a
+  // Cloudflare secret set in the dashboard's runtime Variables & Secrets.
+  "vars": {
+    "CONTACT_FORM_TO_EMAIL": "eduard@primebodywork.co.uk",
+    "CONTACT_FORM_FROM_EMAIL": "noreply@primebodywork.co.uk"
+  },
+  // Preserve dashboard-managed secrets (RESEND_API_KEY) across deploys —
+  // without this, `wrangler deploy` deletes anything not declared above.
+  "keep_vars": true
 }
