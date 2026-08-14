@@ -21,6 +21,32 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
+  // Baseline security headers applied to every response. These are safe,
+  // resource-agnostic hardening (clickjacking, MIME sniffing, referrer
+  // leakage, feature access, HTTPS enforcement). A full Content-Security-
+  // Policy is intentionally left out here — it needs per-resource testing
+  // (Sanity CDN images, Sentry tunnel, Next inline hydration) to avoid
+  // breaking the page, and is best added as a tested follow-up.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 /**
