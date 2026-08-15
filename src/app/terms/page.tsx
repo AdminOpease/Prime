@@ -134,7 +134,11 @@ export default async function TermsPage() {
                   confirmed by us at the time of the work — we do not offer a
                   blanket parts warranty. Where a part carries a
                   manufacturer&apos;s or supplier&apos;s warranty, we pass on the
-                  benefit of that warranty to you where possible.
+                  benefit of that warranty to you where possible. Some parts —
+                  for example certain used, reconditioned or specially-ordered
+                  items — may carry no warranty at all. Where that is the case,
+                  no warranty applies to that part, and we will tell you before
+                  it is fitted wherever practical.
                 </li>
                 <li>
                   <strong>Exclusions.</strong> Our guarantee does not cover fair
