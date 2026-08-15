@@ -4,6 +4,8 @@ import { dataset, projectId } from "./src/sanity/env";
 
 export default defineCliConfig({
   api: { projectId, dataset },
-  // Studio is hosted inside the Next.js app, so we don't need autoUpdates.
-  autoUpdates: true,
+  // Deploy target: primebodywork.sanity.studio (set so `sanity deploy` is
+  // non-interactive and always targets the same hostname).
+  studioHost: "primebodywork",
+  deployment: { appId: "jzpn0402xnh0daq2y0yazf7t", autoUpdates: true },
 });
