@@ -72,8 +72,14 @@ Email is on **Microsoft 365** — preserve every record in
 
 ## 📋 Post-launch
 
-- [ ] Update the UptimeRobot monitor URL → `https://primebodywork.co.uk`.
-- [ ] Sentry test error to confirm alerting works.
+- [ ] Update the UptimeRobot monitor URL → `https://primebodywork.co.uk`
+      (this is now the primary up/down alerting — do this one).
+- [x] Sentry verified: **client-side capture WORKS** (browser errors reach
+      Sentry — test error tagged `__sentry_captured__`, no CSP block).
+      **Server-side capture does NOT work on Cloudflare Workers**
+      (`@sentry/nextjs` Node SDK doesn't run on workerd) — accepted as a
+      known gap. Monitoring = client-side Sentry + UptimeRobot. Optional
+      future: wire `@sentry/cloudflare` for server-side capture.
 - [ ] Send Eduard the [OWNER_CHEATSHEET.md](OWNER_CHEATSHEET.md).
 - [ ] Record + send the Loom walkthrough ([LOOM_SCRIPT.md](LOOM_SCRIPT.md)).
 - [ ] Consider transferring Cloudflare / Sanity / Resend ownership to Eduard.
