@@ -87,6 +87,19 @@ Email is on **Microsoft 365** — preserve every record in
       workmanship period** ("we stand behind our work"). STILL A DRAFT — have
       a solicitor review before relying on it.
 
+## 💡 Optional / future
+
+- [ ] **Fuller Sanity migration** (deferred by owner — do when needed).
+      Currently hybrid: Gallery + Accreditations are Sanity-only; Services,
+      Testimonials, Site Settings and the About page read from Sanity but
+      fall back to hardcoded defaults (in `src/lib/*` and `src/sanity/data.ts`).
+      The homepage marketing blocks (HomeHero, TrustStrip, ProcessSteps,
+      InsuranceCta) are hardcoded and NOT Sanity-wired.
+      Effort: seeding the existing content into Sanity ≈ 1–2h data entry (or
+      a ~45-min seed script); wiring the homepage blocks ≈ half a day dev.
+      ⚠️ Publishing Sanity content REPLACES the code fallback (e.g. adding one
+      testimonial hides the 5 hardcoded reviews).
+
 ## 📋 Post-launch
 
 - [ ] Update the UptimeRobot monitor URL → `https://primebodywork.co.uk`
