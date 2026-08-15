@@ -129,12 +129,20 @@ export async function Footer() {
           </p>
           <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-3 sm:flex-row">
             <p>© {year} {settings.businessName}. All rights reserved.</p>
-            <Link
-              href="/privacy"
-              className="hover:text-[var(--color-accent)]"
-            >
-              Privacy policy
-            </Link>
+            <div className="flex gap-4">
+              <Link
+                href="/privacy"
+                className="hover:text-[var(--color-accent)]"
+              >
+                Privacy policy
+              </Link>
+              <Link
+                href="/terms"
+                className="hover:text-[var(--color-accent)]"
+              >
+                Terms &amp; conditions
+              </Link>
+            </div>
             <p>
               Website by{" "}
               <a
