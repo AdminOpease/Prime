@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { SanityImage } from "@/components/SanityImage";
-import { getGallery, getSiteSettings } from "@/sanity/data";
+import { getGallery } from "@/sanity/data";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -13,15 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function GalleryPage() {
-  const [items, settings] = await Promise.all([
-    getGallery(),
-    getSiteSettings(),
-  ]);
-  const examplesMailto = `mailto:${settings.email}?subject=${encodeURIComponent(
-    "Example photos request",
-  )}&body=${encodeURIComponent(
-    "Hi Prime Bodywork, please could you send me a few before/after examples of similar work? Thanks.",
-  )}`;
+  const items = await getGallery();
 
   return (
     <>
@@ -43,11 +35,8 @@ export default async function GalleryPage() {
               <h2 className="text-xl font-semibold">Gallery coming soon</h2>
               <p className="mt-2 text-[var(--color-muted-foreground)]">
                 We&apos;re photographing recent jobs as they come through.
-                Check back soon — or get in touch for examples in the meantime.
+                Check back soon.
               </p>
-              <div className="mt-6">
-                <ButtonLink href={examplesMailto}>Request examples</ButtonLink>
-              </div>
             </div>
           ) : (
             <ul className="grid gap-8 sm:grid-cols-2">
