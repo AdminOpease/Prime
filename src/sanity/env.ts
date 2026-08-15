@@ -1,28 +1,18 @@
 /**
- * Centralised access to Sanity environment variables.
- * Throws at import time if anything required is missing so we fail fast
- * instead of producing a broken client.
+ * Centralised access to Sanity connection settings.
+ *
+ * These are all PUBLIC, non-secret values (the project id and dataset are
+ * visible in the browser bundle either way). We read them from env vars for
+ * the Next.js app, but fall back to literals so the standalone Sanity Studio
+ * build — which does NOT inline `process.env.NEXT_PUBLIC_*` the way Next.js
+ * does — still gets a valid project id and loads correctly.
  */
 
-function required(name: string, value: string | undefined): string {
-  if (!value) {
-    throw new Error(
-      `Missing required environment variable: ${name}. ` +
-        `Set it in .env.local (or your hosting provider's env settings).`,
-    );
-  }
-  return value;
-}
+export const projectId =
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "8z0je8p3";
 
-export const projectId = required(
-  "NEXT_PUBLIC_SANITY_PROJECT_ID",
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-);
-
-export const dataset = required(
-  "NEXT_PUBLIC_SANITY_DATASET",
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-);
+export const dataset =
+  process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
 export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2025-01-01";
