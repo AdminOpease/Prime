@@ -74,6 +74,14 @@ Email is on **Microsoft 365** — preserve every record in
       registered office 48 Box Crescent, Houghton Regis, Dunstable, LU5 7AH.
 - [ ] VAT: not registered today — if you register later, add the VAT number
       to the footer disclosure (one-line change).
+- [x] Draft **Terms & Conditions** added at /terms (footer link): estimates
+      vs quotes, payment & lien, storage, abandoned-vehicle disposal (Torts
+      Act 1977), parts & workmanship, liability limits — CRA 2015 preserved.
+      Owner-confirmed: storage grace **1 week**, storage **£30/day**, disposal
+      **3 months** (legally advised minimum — 1 week would risk a conversion
+      claim), **no fixed parts warranty** (confirmed per job), **no fixed
+      workmanship period** ("we stand behind our work"). STILL A DRAFT — have
+      a solicitor review before relying on it.
 
 ## 📋 Post-launch
 

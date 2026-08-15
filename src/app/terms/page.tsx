@@ -96,8 +96,8 @@ export default async function TermsPage() {
               </p>
               <p className="mt-3">
                 If the vehicle is not collected within{" "}
-                <strong>48 hours</strong> of us notifying you that it is ready,
-                we reserve the right to charge a storage fee of{" "}
+                <strong>1 week (7 days)</strong> of us notifying you that it is
+                ready, we reserve the right to charge a storage fee of{" "}
                 <strong>£30 per day</strong> (or part day) for each day the
                 vehicle remains with us thereafter.
               </p>
@@ -122,15 +122,19 @@ export default async function TermsPage() {
             <Section title="5. Parts, materials and guarantees">
               <ul className="list-disc space-y-2 pl-6">
                 <li>
-                  <strong>Our workmanship.</strong> We guarantee the labour
-                  element of our work for <strong>3 months</strong> from the
-                  date of collection, subject to the exclusions below.
+                  <strong>Our workmanship.</strong> We stand behind our work. If
+                  a repair fails because of the way we carried it out, we will
+                  put it right. This is in addition to your statutory right under
+                  the Consumer Rights Act 2015 to have work performed with
+                  reasonable care and skill. We do not offer a fixed-period
+                  workmanship guarantee; the exclusions below apply.
                 </li>
                 <li>
-                  <strong>Parts.</strong> Parts are covered by the
-                  manufacturer&apos;s or supplier&apos;s warranty (typically 12
-                  months). We pass on the benefit of that warranty to you where
-                  possible.
+                  <strong>Parts.</strong> Any warranty on parts we supply is
+                  confirmed by us at the time of the work — we do not offer a
+                  blanket parts warranty. Where a part carries a
+                  manufacturer&apos;s or supplier&apos;s warranty, we pass on the
+                  benefit of that warranty to you where possible.
                 </li>
                 <li>
                   <strong>Exclusions.</strong> Our guarantee does not cover fair
