@@ -14,14 +14,6 @@ export default async function PrivacyPolicyPage() {
   const business = settings.businessName ?? "Prime Bodywork and Repair";
   const email = settings.email ?? "eduard@primebodywork.co.uk";
   const phone = settings.phone;
-  const address = [
-    settings.address?.line1,
-    settings.address?.line2,
-    settings.address?.city,
-    settings.address?.postcode,
-  ]
-    .filter(Boolean)
-    .join(", ");
 
   // Kept in sync with the actual site behaviour. Update the "Last updated"
   // date whenever the substance of this policy changes.
@@ -56,8 +48,10 @@ export default async function PrivacyPolicyPage() {
 
             <Section title="Who we are">
               <p>
-                {business}
-                {address ? `, ${address}.` : "."} You can reach us by phone on{" "}
+                Prime Bodywork and Repair Ltd (registered in England &amp;
+                Wales, company no. 16355152), registered office 48 Box
+                Crescent, Houghton Regis, Dunstable, LU5 7AH. You can reach us
+                by phone on{" "}
                 <a
                   href={`tel:${phone.replace(/\s+/g, "")}`}
                   className="font-medium text-[var(--color-accent)] hover:underline"

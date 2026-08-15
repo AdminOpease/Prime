@@ -120,23 +120,31 @@ export async function Footer() {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col items-center justify-between gap-2 py-4 text-xs text-white/60 sm:flex-row">
-          <p>© {year} {settings.businessName}. All rights reserved.</p>
-          <Link
-            href="/privacy"
-            className="hover:text-[var(--color-accent)]"
-          >
-            Privacy policy
-          </Link>
-          <p>
-            Website by{" "}
-            <a
-              href="https://primebodywork.co.uk"
+        <Container className="py-4 text-xs text-white/60">
+          {/* Company disclosure — required for a UK limited company */}
+          <p className="text-center sm:text-left">
+            Prime Bodywork and Repair Ltd — registered in England &amp; Wales,
+            company no. 16355152. Registered office: 48 Box Crescent, Houghton
+            Regis, Dunstable, LU5 7AH.
+          </p>
+          <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-3 sm:flex-row">
+            <p>© {year} {settings.businessName}. All rights reserved.</p>
+            <Link
+              href="/privacy"
               className="hover:text-[var(--color-accent)]"
             >
-              primebodywork.co.uk
-            </a>
-          </p>
+              Privacy policy
+            </Link>
+            <p>
+              Website by{" "}
+              <a
+                href="https://primebodywork.co.uk"
+                className="hover:text-[var(--color-accent)]"
+              >
+                primebodywork.co.uk
+              </a>
+            </p>
+          </div>
         </Container>
       </div>
     </footer>
