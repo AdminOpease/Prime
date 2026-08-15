@@ -1,7 +1,7 @@
 <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prime Bodywork">
-  <rect width="64" height="64" rx="14" fill="#1e3a8a"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="#f7f5f0" stroke="#e7e2d8" stroke-width="1"/>
   <text x="32" y="31" text-anchor="middle" dominant-baseline="central"
         font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="40"
-        fill="#ffffff">P</text>
-  <rect x="19" y="47" width="26" height="5" rx="2.5" fill="#dc2626"/>
+        fill="#dc2626">P</text>
+  <rect x="19" y="47" width="26" height="5" rx="2.5" fill="#f59e0b"/>
 </svg>
