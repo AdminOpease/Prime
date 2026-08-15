@@ -69,9 +69,13 @@ Email is on **Microsoft 365** — preserve every record in
 - [ ] Any accreditations to add (About page auto-shows them when present).
 - [ ] Confirm privacy-policy specifics: data retention (currently 24
       months) and the "no analytics/cookies" statement (true today).
-- [x] UK Ltd company disclosure added (footer + privacy policy): Prime
-      Bodywork and Repair Ltd, company no. 16355152, England & Wales,
-      registered office 48 Box Crescent, Houghton Regis, Dunstable, LU5 7AH.
+- [x] UK Ltd company disclosure (footer + privacy policy): Prime Bodywork
+      and Repair Ltd, company no. 16355152, England & Wales. The registered
+      office (owner's home address) is deliberately NOT shown on the site —
+      not legally required there; the workshop (Camford Way) is the public
+      business address. NB: the registered office is still public on the
+      Companies House register — to hide it there, change the registered
+      office at Companies House (e.g. to an accountant's/service address).
 - [ ] VAT: not registered today — if you register later, add the VAT number
       to the footer disclosure (one-line change).
 - [x] Draft **Terms & Conditions** added at /terms (footer link): estimates

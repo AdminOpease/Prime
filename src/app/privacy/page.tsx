@@ -49,9 +49,7 @@ export default async function PrivacyPolicyPage() {
             <Section title="Who we are">
               <p>
                 Prime Bodywork and Repair Ltd (registered in England &amp;
-                Wales, company no. 16355152), registered office 48 Box
-                Crescent, Houghton Regis, Dunstable, LU5 7AH. You can reach us
-                by phone on{" "}
+                Wales, company no. 16355152). You can reach us by phone on{" "}
                 <a
                   href={`tel:${phone.replace(/\s+/g, "")}`}
                   className="font-medium text-[var(--color-accent)] hover:underline"

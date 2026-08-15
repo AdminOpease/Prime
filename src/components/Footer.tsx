@@ -124,8 +124,7 @@ export async function Footer() {
           {/* Company disclosure — required for a UK limited company */}
           <p className="text-center sm:text-left">
             Prime Bodywork and Repair Ltd — registered in England &amp; Wales,
-            company no. 16355152. Registered office: 48 Box Crescent, Houghton
-            Regis, Dunstable, LU5 7AH.
+            company no. 16355152.
           </p>
           <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-3 sm:flex-row">
             <p>© {year} {settings.businessName}. All rights reserved.</p>
