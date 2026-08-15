@@ -19,15 +19,35 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
+  const tagline = settings.tagline ?? "Van & fleet bodywork specialists in Luton";
+  const title = `${settings.businessName} | ${tagline}`.trim();
+  const description =
+    "Specialist body repair centre in Luton — van & fleet bodywork, accident repair, end-of-hire prep and insurance work. Delivery service partners, fleet operators and private customers welcome.";
+  const url = "https://primebodywork.co.uk";
+
   return {
+    metadataBase: new URL(url),
     title: {
-      default: `${settings.businessName} | ${settings.tagline ?? ""}`.trim(),
+      default: title,
       template: `%s | ${settings.businessName}`,
     },
-    description:
-      settings.tagline ??
-      "Specialist body repair centre in Luton. Van and fleet bodywork, accident repair, end-of-hire prep and insurance work. Delivery service partners and fleet operators welcome.",
-    metadataBase: new URL("https://primebodywork.co.uk"),
+    description,
+    // Open Graph / Twitter — controls how the link previews when shared
+    // (WhatsApp, iMessage, Facebook, etc.). The preview image is provided
+    // by src/app/opengraph-image.png, which Next.js wires in automatically.
+    openGraph: {
+      type: "website",
+      locale: "en_GB",
+      url,
+      siteName: settings.businessName,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
